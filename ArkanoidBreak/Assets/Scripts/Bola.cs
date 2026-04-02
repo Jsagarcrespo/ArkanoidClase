@@ -16,7 +16,9 @@ public class Bola : MonoBehaviour
     public TextMeshProUGUI puntoTxt;
     public GameObject[] vidasImage;
 
-    public GameObject gameOverPanel; 
+    public GameObject gameOverPanel;
+    public GameObject victoriaPanel;
+    int cuentaLadrillo; 
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,6 +26,7 @@ public class Bola : MonoBehaviour
     {
         RB = GetComponent<Rigidbody2D>();
         RB.linearVelocity = Vector2.down * 10f;
+        cuentaLadrillo = GameObject.FindGameObjectsWithTag("Bloque").Length;
 
     }
 
@@ -59,6 +62,13 @@ public class Bola : MonoBehaviour
             Destroy(collision.gameObject);
             puntos+= 10;
             puntoTxt.text = puntos.ToString("0000");
+            cuentaLadrillo--; 
+            if(cuentaLadrillo <= 0)
+            {
+                victoriaPanel.SetActive(true);
+                Time.timeScale = 0;
+            }
+
         }
     }
 
