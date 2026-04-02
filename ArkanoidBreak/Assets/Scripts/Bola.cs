@@ -3,7 +3,7 @@ using UnityEngine;
 public class Bola : MonoBehaviour
 {
     public float minY = -5.5f;
-    public float maxVelocidad = 25f;
+    public float maxVelocidad = 15f;
 
     Rigidbody2D RB; 
     
@@ -12,6 +12,8 @@ public class Bola : MonoBehaviour
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
+        RB.linearVelocity = Vector2.down * 10f;
+
     }
 
     // Update is called once per frame
@@ -20,9 +22,13 @@ public class Bola : MonoBehaviour
         if(transform.position.y < minY)
         {
             transform.position = Vector3.zero;
-            RB.linearVelocity = Vector3.zero;
+            RB.linearVelocity = Vector2.down * 10f;
         }
 
+        if (RB.linearVelocity.magnitude > maxVelocidad)
+        {
+            RB.linearVelocity = Vector3.ClampMagnitude(RB.linearVelocity, maxVelocidad);
+        }
         
     }
 }
