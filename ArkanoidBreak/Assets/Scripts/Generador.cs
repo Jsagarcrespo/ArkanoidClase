@@ -7,17 +7,44 @@ public class Generador : MonoBehaviour
 
     public Vector2Int size;
     public Vector2 offset;
-    public GameObject bloquePrefab;
 
+    public GameObject[] bloquesPrefabs;      // Ladrillos normales
+    public GameObject bloqueMetalPrefab;     // Ladrillo indestructible
+
+    public int minMetales = 2;
+    public int maxMetales = 5;
 
     private void Awake()
     {
+        int totalBricks = size.x * size.y;
+
+        // Número aleatorio de ladrillos metálicos
+        int cantidadMetales = Random.Range(minMetales, maxMetales + 1);
+
+        // Para no repetir posiciones
+        int metalesColocados = 0;
+
         for (int i = 0; i < size.x; i++)
         {
             for (int j = 0; j < size.y; j++)
             {
-                GameObject newBrick = Instantiate(bloquePrefab, transform);
-                newBrick.transform.position = transform.position + new Vector3((float)((size.x - 1) * .5f - i) * offset.x, j * offset.y, 0);
+                GameObject prefabElegido;
+
+                // Probabilidad de colocar metal (hasta el límite)
+                if (metalesColocados < cantidadMetales && Random.value < 0.2f)
+                {
+                    prefabElegido = bloqueMetalPrefab;
+                    metalesColocados++;
+                }
+                else
+                {
+                    prefabElegido = bloquesPrefabs[Random.Range(0, bloquesPrefabs.Length)];
+                }
+
+                GameObject newBrick = Instantiate(prefabElegido, transform);
+
+                newBrick.transform.position = transform.position +
+                    new Vector3((float)((size.x - 1) * .5f - i) * offset.x, j * offset.y, 0);
             }
         }
     }
@@ -31,6 +58,6 @@ public class Generador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+                     
     }
 }
