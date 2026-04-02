@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Generador : MonoBehaviour
 {
@@ -8,8 +9,8 @@ public class Generador : MonoBehaviour
     public Vector2Int size;
     public Vector2 offset;
 
-    public GameObject[] bloquesPrefabs;      // Ladrillos normales
-    public GameObject bloqueMetalPrefab;     // Ladrillo indestructible
+    public GameObject[] bloquesPrefabs;     
+    public GameObject bloqueMetalPrefab;     
 
     public int minMetales = 2;
     public int maxMetales = 5;
@@ -18,7 +19,7 @@ public class Generador : MonoBehaviour
     {
         int totalBricks = size.x * size.y;
 
-        // Número aleatorio de ladrillos metálicos
+        
         int cantidadMetales = Random.Range(minMetales, maxMetales + 1);
 
         // Para no repetir posiciones
@@ -60,4 +61,11 @@ public class Generador : MonoBehaviour
     {
                      
     }
+
+    public void Restart()
+    {
+        Time.timeScale = 1; 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 }
