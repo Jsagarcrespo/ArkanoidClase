@@ -29,6 +29,15 @@ public class Bola : MonoBehaviour
         {
             RB.linearVelocity = Vector3.ClampMagnitude(RB.linearVelocity, maxVelocidad);
         }
-        
     }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bloque"))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
 }
