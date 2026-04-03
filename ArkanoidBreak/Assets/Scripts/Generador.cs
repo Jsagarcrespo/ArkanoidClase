@@ -10,7 +10,10 @@ public class Generador : MonoBehaviour
     public Vector2 offset;
 
     public GameObject[] bloquesPrefabs;     
-    public GameObject bloqueMetalPrefab;     
+    public GameObject bloqueMetalPrefab;
+
+    public GameObject panelBienvenida;
+    public static bool primeraVez = true;
 
     public int minMetales = 2;
     public int maxMetales = 5;
@@ -31,7 +34,7 @@ public class Generador : MonoBehaviour
             {
                 GameObject prefabElegido;
 
-                // Probabilidad de colocar metal (hasta el límite)
+                // Probabilidad de colocar metal (hasta el limite)
                 if (metalesColocados < cantidadMetales && Random.value < 0.2f)
                 {
                     prefabElegido = bloqueMetalPrefab;
@@ -53,13 +56,29 @@ public class Generador : MonoBehaviour
 
     void Start()
     {
-        
+        if (primeraVez)
+        {
+            Time.timeScale = 0f;
+            panelBienvenida.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            panelBienvenida.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
                      
+    }
+
+    public void EmpezarJuego()
+    {
+        primeraVez = false;
+        panelBienvenida.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void Restart()
