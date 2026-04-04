@@ -12,8 +12,8 @@ public class Barra : MonoBehaviour
 
     private float anchoBarra;
 
-    public GameObject bolaPrefab;
-    private readonly float fuerza = 5f;
+    public GameObject disparo;
+    private readonly float fuerza = 15f;
 
 
     void Start()
@@ -62,7 +62,7 @@ public class Barra : MonoBehaviour
     void Disparar()
     {
         // Hacemos copias del prefab del disparo y las lanzamos
-        GameObject nuevaBola = Instantiate(bolaPrefab, transform.position, transform.rotation);
+        GameObject nuevaBola = Instantiate(disparo, transform.position, transform.rotation);
 
         Rigidbody2D d = nuevaBola.GetComponent<Rigidbody2D>();
 

@@ -1034,7 +1034,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   puntoTxt: {fileID: 1563037489}
-  vidasImage: []
   gameOverPanel: {fileID: 620383267}
   victoriaPanel: {fileID: 1414594353}
   ImagenesVida:
@@ -1256,7 +1255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Barra
   velocidadBarra: 65
-  bolaPrefab: {fileID: 2567357547362021365, guid: 7090dc20839da7e4089157dc147ac2de, type: 3}
+  disparo: {fileID: 4283104234097564337, guid: b866fa8cc6d175748917ce857606df70, type: 3}
 --- !u!60 &656356839
 PolygonCollider2D:
   m_ObjectHideFlags: 0
