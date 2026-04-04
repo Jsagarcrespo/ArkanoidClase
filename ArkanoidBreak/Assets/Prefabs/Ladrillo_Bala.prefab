@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4558271028244444700}
   - component: {fileID: 4092575462194675216}
   - component: {fileID: 4477026256640295014}
+  - component: {fileID: 7296600226602355587}
   m_Layer: 0
   m_Name: Ladrillo_Bala
   m_TagString: Bloque
@@ -138,3 +139,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.52, y: 0.43}
   m_EdgeRadius: 0
+--- !u!114 &7296600226602355587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612123725186490904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5afce6207be2e4ab43382527d6b1ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BloqueDisparo
+  iconoDisparoPrefab: {fileID: 4108213429849333852, guid: def99b26d562b1a4a9c9118dff8d267d, type: 3}

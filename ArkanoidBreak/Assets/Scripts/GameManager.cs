@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
 
     public float fuerzaBola = 10f; 
 
+    public bool disparoActivo = false;
+    public float duracionDisparo = 5f; 
+
     void Awake()
     {
         Instance = this;
@@ -130,6 +133,19 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Duplicador ha pasado por la barra");
 
+    }
+
+
+    public void ActivarDisparo()
+    {
+        disparoActivo = true;
+        Invoke("DesactivarDisparo", duracionDisparo); 
+    }
+
+
+    public void DesactivaDisparo()
+    {
+        disparoActivo = false;
     }
 
 

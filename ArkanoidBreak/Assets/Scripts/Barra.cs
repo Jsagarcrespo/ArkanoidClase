@@ -22,6 +22,7 @@ public class Barra : MonoBehaviour
         RB.bodyType = RigidbodyType2D.Kinematic;
         RB.gravityScale = 0f;
         RB.freezeRotation = true;
+        GameManager.Instance.DesactivaDisparo(); 
 
     }
 

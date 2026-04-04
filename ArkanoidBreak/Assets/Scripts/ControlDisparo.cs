@@ -16,7 +16,7 @@ public class ControlDisparo : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+    
         if (collision.gameObject.CompareTag("Bloque"))
         {
             GameManager.Instance.SumarPuntos(10);
@@ -27,7 +27,7 @@ public class ControlDisparo : MonoBehaviour
             Destroy(gameObject);
         }
 
-        else if (collision.gameObject.CompareTag("Pared") || collision.gameObject.CompareTag("Bola"))
+        else if (collision.gameObject.CompareTag("Pared") || collision.gameObject.CompareTag("Bola") || collision.gameObject.CompareTag("BloqueMetal"))
         {
             Destroy(gameObject);
         }

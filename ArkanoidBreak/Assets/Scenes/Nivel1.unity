@@ -1046,6 +1046,8 @@ MonoBehaviour:
   bolaPrefab: {fileID: 4017005831044747471, guid: 7090dc20839da7e4089157dc147ac2de, type: 3}
   bolasActivas: []
   fuerzaBola: 10
+  disparoActivo: 0
+  duracionDisparo: 5
 --- !u!4 &527358529
 Transform:
   m_ObjectHideFlags: 0
@@ -2581,10 +2583,14 @@ MonoBehaviour:
   - {fileID: 4612123725186490904, guid: 56e1e75fbfb019a48ae5e295db655f55, type: 3}
   - {fileID: 4612123725186490904, guid: 38dc3301b4ed1924c87136e429e9e92a, type: 3}
   - {fileID: 4612123725186490904, guid: 6542941440d57924a874cc2109ebc081, type: 3}
+  - {fileID: 4612123725186490904, guid: 9ca0523ac2ac93842955cce4281206f4, type: 3}
   bloqueMetalPrefab: {fileID: 6416994028177359492, guid: a309d390a30a30645a54cbc2f708c868, type: 3}
+  bloqueDsiparoPrefab: {fileID: 4612123725186490904, guid: 9ca0523ac2ac93842955cce4281206f4, type: 3}
   panelBienvenida: {fileID: 255099224}
-  minMetales: 0
-  maxMetales: 0
+  minMetales: 1
+  maxMetales: 1
+  minBloqDisparo: 2
+  maxBloqDisparo: 5
 --- !u!1 &2077681223
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,7 +2666,7 @@ GameObject:
   - component: {fileID: 2128129994}
   m_Layer: 0
   m_Name: Paredes
-  m_TagString: Untagged
+  m_TagString: Pared
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
