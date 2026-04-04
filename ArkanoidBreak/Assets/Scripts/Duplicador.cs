@@ -22,10 +22,11 @@ public class Duplicador : MonoBehaviour
         if (other.CompareTag("Barra"))
         {
             Debug.Log("Duplicador ha pasado por la barra");
-            GameManager.Instance.DuplicarBolas(); 
+            GameManager.Instance.DuplicarBolas();
+            Destroy(gameObject);
         }
 
-        Destroy(gameObject);
+       
 
     }
 

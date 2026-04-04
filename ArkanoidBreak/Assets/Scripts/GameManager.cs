@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     public Rigidbody2D bolaPrefab;
     public List<Bola> bolasActivas = new List<Bola>();
 
+    public float fuerzaBola = 10f; 
+
     void Awake()
     {
         Instance = this;
@@ -119,7 +121,8 @@ public class GameManager : MonoBehaviour
             );
 
             Rigidbody2D rb = nuevaBola.GetComponent<Rigidbody2D>();
-            rb.linearVelocity = b.GetComponent<Rigidbody2D>().linearVelocity + new Vector2(Random.Range(-1f, 1f), 0);
+            Vector2 fuerza = new Vector2(Random.Range(-1f, 1f), 1).normalized * fuerzaBola;
+            rb.AddForce(fuerza, ForceMode2D.Impulse);
 
             // No es neceario que lo registremos aqui
             // RegistrarBola(nuevaBola.GetComponent<Bola>());
