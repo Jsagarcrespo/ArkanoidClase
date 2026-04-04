@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using TMPro;    
 
@@ -18,8 +18,15 @@ public class Bola : MonoBehaviour
 
     public GameObject gameOverPanel;
     public GameObject victoriaPanel;
-    int cuentaLadrillo; 
-    
+    int cuentaLadrillo;
+
+    public static int bolasEnJuego = 0;
+
+
+    private void Awake()
+    {
+        bolasEnJuego++;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,18 +42,26 @@ public class Bola : MonoBehaviour
     {
         if(transform.position.y < minY)
         {
-            if (vidas <= 0)
-            {
-                GameOver();
+            if (bolasEnJuego <= 1) 
+            { 
+                if (vidas <= 0)
+                {
+                    GameOver();
+                }
+                else
+                {
+                    transform.position = Vector3.zero;
+                    RB.linearVelocity = Vector2.down * 10f;
+                    vidas--;
+                    vidasImage[vidas].SetActive(false);
+                }
             }
             else
             {
-                transform.position = Vector3.zero;
-                RB.linearVelocity = Vector2.down * 10f;
-                vidas--;
-                vidasImage[vidas].SetActive(false);
+                Destroy(gameObject);
             }
-        }
+
+        }   
 
         if (RB.linearVelocity.magnitude > maxVelocidad)
         {
@@ -80,6 +95,11 @@ public class Bola : MonoBehaviour
         Time.timeScale = 0; 
         Destroy(gameObject);
     }
-   
+
+    private void OnDestroy()
+    {
+        bolasEnJuego--; 
+    }
+
 
 }

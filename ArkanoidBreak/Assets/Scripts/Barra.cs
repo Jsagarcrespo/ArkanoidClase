@@ -11,6 +11,9 @@ public class Barra : MonoBehaviour
 
     private float anchoBarra;
 
+    public Rigidbody2D bola;
+    private readonly float fuerza = 5f;
+
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
@@ -47,5 +50,26 @@ public class Barra : MonoBehaviour
 
 
             RB.MovePosition(nuevaPos);
+
+        // Disparo
+        if (keyboard.spaceKey.wasPressedThisFrame)
+        {
+            Disparar();
+        }
+    }
+
+    void Disparar()
+    {
+        // Hacemos copias del prefab del disparo y las lanzamos
+        Rigidbody2D d = (Rigidbody2D)Instantiate(bola, transform.position, transform.rotation);
+
+        // Desactivar la gravedad para este objeto, si no, ¡se cae!
+        d.gravityScale = 0;
+
+        // Posición de partida, en la punta de la nave
+        d.transform.Translate(Vector2.up * 0.7f);
+
+        // Lanzarlo
+        d.AddForce(Vector2.up * fuerza, ForceMode2D.Impulse);
     }
 }
