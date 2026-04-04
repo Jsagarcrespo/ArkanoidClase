@@ -9,33 +9,6 @@ public class Bola : MonoBehaviour
 
     Rigidbody2D RB;
 
-    /// <summary>
-    /// Contador global de puntos
-    ///  Con static todas las instancias de las bolas comparten este valor
-    ///  cada vez que se rompe un ladrillo ira sumando en el contador
-    ///  De este modo varias bolas suman correctamente el puntaje total, 
-    ///  y no cada bola tiene su contado independiente
-    /// </summary>
-    
-    public static int puntos = 0;
-    int vidas = 3;
-
-
-    public TextMeshProUGUI puntoTxt;
-    public GameObject[] vidasImage;
-
-    public GameObject gameOverPanel;
-    public GameObject victoriaPanel;
-
-    /// <summary>
-    /// Contador global de ladrillos
-    /// Con static todas las instancias de las bolas comparten este valor
-    /// cada vez que se rompe un ladrillo ira restando en el contador
-    /// Al llegar a cero significa que todos han sido destruidos
-    /// y mostraremos el panel de Victoria
-    /// </summary>
-    public static int cuentaLadrillo;
-
     public static int bolasEnJuego = 0;
 
 
@@ -49,18 +22,8 @@ public class Bola : MonoBehaviour
     {
         RB = GetComponent<Rigidbody2D>();
         RB.linearVelocity = Vector2.down * 10f;
-
-
-        /// <summary>
-        /// Iniciliza el contador global de ladrillos al comienzo
-        /// Se hace por si a caso, por si el contador queda en 0 de partidas anteriores
-        /// Se consigue el numero de ladrillos mediante su etiqueta
-        /// </summary>
-        if (cuentaLadrillo == 0)
-        {
-            cuentaLadrillo = GameObject.FindGameObjectsWithTag("Bloque").Length;
-        }
-
+            
+        // Al tener un manejador ya no es necesario que la Bola.cs se encargue contar los ladrillos y actualizar la UI
     }
 
     // Update is called once per frame
@@ -69,18 +32,13 @@ public class Bola : MonoBehaviour
         if(transform.position.y < minY)
         {
             if (bolasEnJuego <= 1) 
-            { 
-                if (vidas <= 0)
-                {
-                    GameOver();
-                }
-                else
-                {
-                    transform.position = Vector3.zero;
-                    RB.linearVelocity = Vector2.down * 10f;
-                    vidas--;
-                    vidasImage[vidas].SetActive(false);
-                }
+            {
+                // No necesitamos condicion de contar vida para que salte el GameOver
+                // Y lo hace la funcion PerderVida del GameManger
+
+                GameManager.Instance.PerderVida();
+                transform.position = Vector3.zero;
+                RB.linearVelocity = Vector2.down * 10f;     
             }
             else
             {
@@ -101,25 +59,11 @@ public class Bola : MonoBehaviour
         if (collision.gameObject.CompareTag("Bloque"))
         {
             Destroy(collision.gameObject);
-            puntos+= 10;
-            puntoTxt.text = puntos.ToString("0000");
-            cuentaLadrillo--; 
-            if(cuentaLadrillo <= 0)
-            {
-                victoriaPanel.SetActive(true);
-                Time.timeScale = 0;
-            }
+
+            GameManager.Instance.SumarPuntos(10);
+            GameManager.Instance.RomperLadrillo();
 
         }
-    }
-
-
-    void GameOver()
-    {
-        Debug.Log("Game Over"); 
-        gameOverPanel.SetActive(true);
-        Time.timeScale = 0; 
-        Destroy(gameObject);
     }
 
     private void OnDestroy()

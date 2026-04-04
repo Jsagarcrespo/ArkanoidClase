@@ -16,19 +16,12 @@ public class Barra : MonoBehaviour
     private readonly float fuerza = 5f;
 
 
-    // Para que pueda pasarlos en el inspector del prefab
-    public TextMeshProUGUI puntoTxt;
-    public GameObject[] vidasImage; 
-    public GameObject gameOverPanel;
-    public GameObject victoriaPanel; 
-
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
         RB.bodyType = RigidbodyType2D.Kinematic;
         RB.gravityScale = 0f;
         RB.freezeRotation = true;
-
 
     }
 
@@ -73,15 +66,12 @@ public class Barra : MonoBehaviour
 
         Rigidbody2D d = nuevaBola.GetComponent<Rigidbody2D>();
 
-        Bola scriptBola = nuevaBola.GetComponent<Bola>(); 
-        scriptBola.puntoTxt = puntoTxt;
-        scriptBola.vidasImage = vidasImage;
-        scriptBola.gameOverPanel = gameOverPanel;
-        scriptBola.victoriaPanel = victoriaPanel;
-
         d.gravityScale = 0;
         d.transform.Translate(Vector2.up * 0.7f); 
         d.AddForce(Vector2.up * fuerza, ForceMode2D.Impulse);
-        
+
+        // ya no necesitamos actualizar la ui ni contar ladrrilos
+        // referencia a commit: a8d9f8d
+
     }
 }
