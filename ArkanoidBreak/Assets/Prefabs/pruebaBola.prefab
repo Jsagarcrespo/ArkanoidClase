@@ -171,3 +171,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bola
   minY: -5.5
   maxVelocidad: 5
+  duplisPrefab: {fileID: 4006479635686859991, guid: 7b71369fc005ab9488e1cd0386538f78, type: 3}

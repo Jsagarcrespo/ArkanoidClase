@@ -21,8 +21,12 @@ public class Duplicador : MonoBehaviour
     {
         if (other.CompareTag("Barra"))
         {
-            Debug.Log("Duplicador ha pasado por la barra"); 
+            Debug.Log("Duplicador ha pasado por la barra");
+            GameManager.Instance.DuplicarBolas(); 
         }
+
+        Destroy(gameObject);
+
     }
 
 }

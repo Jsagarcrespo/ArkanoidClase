@@ -8,13 +8,12 @@ public class Bola : MonoBehaviour
     public float maxVelocidad = 15f;
 
     Rigidbody2D RB;
-
-    public static int bolasEnJuego = 0;
+    public GameObject duplisPrefab;
 
 
     private void Awake()
     {
-        bolasEnJuego++;
+        GameManager.Instance.RegistrarBola(this);
     }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,7 +30,7 @@ public class Bola : MonoBehaviour
     {
         if(transform.position.y < minY)
         {
-            if (bolasEnJuego <= 1) 
+            if (GameManager.Instance.sacarBolasAct() <= 1) 
             {
                 // No necesitamos condicion de contar vida para que salte el GameOver
                 // Y lo hace la funcion PerderVida del GameManger
@@ -63,12 +62,21 @@ public class Bola : MonoBehaviour
             GameManager.Instance.SumarPuntos(10);
             GameManager.Instance.RomperLadrillo();
 
+            // probabilidad de que salga el duplicado en un 20%
+            // Random.value para compararlo entre 0 y 1 
+            // Si el valor es menor que la probabilidad, se instancia el prefab
+            float probableDuplis = 0.2f; 
+            if (Random.value < probableDuplis)
+            {
+                Instantiate(duplisPrefab, collision.transform.position, Quaternion.identity);
+            }
+
         }
     }
 
     private void OnDestroy()
     {
-        bolasEnJuego--; 
+        GameManager.Instance.EliminarBola(this);
     }
 
 

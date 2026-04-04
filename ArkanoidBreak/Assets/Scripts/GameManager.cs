@@ -1,5 +1,6 @@
-using UnityEngine;
+using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 
 
 // Centralizamos todo el estado del juego
@@ -28,6 +29,9 @@ public class GameManager : MonoBehaviour
     // Innecesario el static porque llamamos a la funcion RomperLadrillo
     // refereincia a commit: c62cc96
     public int cuentaLadrillo;
+
+    public Rigidbody2D bolaPrefab;
+    public List<Bola> bolasActivas = new List<Bola>();
 
     void Awake()
     {
@@ -75,4 +79,55 @@ public class GameManager : MonoBehaviour
     {
         puntoTxt.text = puntos.ToString("0000");
     }
-}
+
+
+    public void RegistrarBola(Bola ball)
+    {
+        bolasActivas.Add(ball);
+    }
+
+    public void EliminarBola(Bola ball)
+    {
+        bolasActivas.Remove(ball);
+    }
+
+    public int sacarBolasAct()
+    {
+        for (int i = bolasActivas.Count - 1; i >= 0; i--)
+        {
+            if (bolasActivas[i] == null)
+            {
+                bolasActivas.RemoveAt(i);
+            }
+        }
+        return bolasActivas.Count;
+    }
+        
+        
+    public void DuplicarBolas()
+    {
+        // Limpiar antes de duplicar
+        sacarBolasAct(); 
+
+        // con esto copiamos la lista que tenemos
+        foreach (Bola b in new List<Bola>(bolasActivas)) 
+        {
+            Rigidbody2D nuevaBola = Instantiate(
+                bolaPrefab,
+                b.transform.position,
+                Quaternion.identity
+            );
+
+            Rigidbody2D rb = nuevaBola.GetComponent<Rigidbody2D>();
+            rb.linearVelocity = b.GetComponent<Rigidbody2D>().linearVelocity + new Vector2(Random.Range(-1f, 1f), 0);
+
+            // No es neceario que lo registremos aqui
+            // RegistrarBola(nuevaBola.GetComponent<Bola>());
+        }
+
+        Debug.Log("Duplicador ha pasado por la barra");
+
+    }
+
+
+    }
