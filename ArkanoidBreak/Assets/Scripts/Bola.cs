@@ -9,7 +9,15 @@ public class Bola : MonoBehaviour
 
     Rigidbody2D RB;
 
-    int puntos = 0;
+    /// <summary>
+    /// Contador global de puntos
+    ///  Con static todas las instancias de las bolas comparten este valor
+    ///  cada vez que se rompe un ladrillo ira sumando en el contador
+    ///  De este modo varias bolas suman correctamente el puntaje total, 
+    ///  y no cada bola tiene su contado independiente
+    /// </summary>
+    
+    public static int puntos = 0;
     int vidas = 3;
 
 
@@ -18,7 +26,15 @@ public class Bola : MonoBehaviour
 
     public GameObject gameOverPanel;
     public GameObject victoriaPanel;
-    int cuentaLadrillo;
+
+    /// <summary>
+    /// Contador global de ladrillos
+    /// Con static todas las instancias de las bolas comparten este valor
+    /// cada vez que se rompe un ladrillo ira restando en el contador
+    /// Al llegar a cero significa que todos han sido destruidos
+    /// y mostraremos el panel de Victoria
+    /// </summary>
+    public static int cuentaLadrillo;
 
     public static int bolasEnJuego = 0;
 
@@ -27,13 +43,23 @@ public class Bola : MonoBehaviour
     {
         bolasEnJuego++;
     }
-
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
         RB.linearVelocity = Vector2.down * 10f;
-        cuentaLadrillo = GameObject.FindGameObjectsWithTag("Bloque").Length;
+
+
+        /// <summary>
+        /// Iniciliza el contador global de ladrillos al comienzo
+        /// Se hace por si a caso, por si el contador queda en 0 de partidas anteriores
+        /// Se consigue el numero de ladrillos mediante su etiqueta
+        /// </summary>
+        if (cuentaLadrillo == 0)
+        {
+            cuentaLadrillo = GameObject.FindGameObjectsWithTag("Bloque").Length;
+        }
 
     }
 
