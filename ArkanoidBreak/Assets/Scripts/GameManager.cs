@@ -16,9 +16,9 @@ public class GameManager : MonoBehaviour
     // Mantenemos separdo la UI del comportamiento individual de los objetos
     // referencia a commit: a8d9f8d
     public TextMeshProUGUI puntoTxt;
-    public GameObject[] vidasImage;
     public GameObject gameOverPanel;
     public GameObject victoriaPanel;
+    public GameObject[] ImagenesVida; 
 
     // Innecesario el static porque llamamos a la funcion SumarPuntos
     // con lo que nuestros puntos se comparten automaticamente
@@ -67,8 +67,8 @@ public class GameManager : MonoBehaviour
     {
         vidas--;
 
-        if (vidas >= 0 && vidas < vidasImage.Length)
-            vidasImage[vidas].SetActive(false);
+        if (vidas >= 0 && vidas < ImagenesVida.Length)
+            ImagenesVida[vidas].SetActive(false);
 
         if (vidas <= 0)
         {
