@@ -171,10 +171,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bola
   minY: -5.5
   maxVelocidad: 5
-  puntoTxt: {fileID: 0}
-  vidasImage:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  gameOverPanel: {fileID: 0}
-  victoriaPanel: {fileID: 0}
