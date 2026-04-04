@@ -1037,11 +1037,16 @@ MonoBehaviour:
   vidasImage: []
   gameOverPanel: {fileID: 620383267}
   victoriaPanel: {fileID: 1414594353}
+  ImagenesVida:
+  - {fileID: 1725450988}
+  - {fileID: 441173966}
+  - {fileID: 1874207995}
   puntos: 0
   vidas: 3
   cuentaLadrillo: 0
   bolaPrefab: {fileID: 4017005831044747471, guid: 7090dc20839da7e4089157dc147ac2de, type: 3}
   bolasActivas: []
+  fuerzaBola: 10
 --- !u!4 &527358529
 Transform:
   m_ObjectHideFlags: 0

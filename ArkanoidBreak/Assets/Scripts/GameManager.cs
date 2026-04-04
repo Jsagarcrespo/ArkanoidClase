@@ -1,5 +1,6 @@
-using UnityEngine;
+using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 
 
 // Centralizamos todo el estado del juego
@@ -15,9 +16,9 @@ public class GameManager : MonoBehaviour
     // Mantenemos separdo la UI del comportamiento individual de los objetos
     // referencia a commit: a8d9f8d
     public TextMeshProUGUI puntoTxt;
-    public GameObject[] vidasImage;
     public GameObject gameOverPanel;
     public GameObject victoriaPanel;
+    public GameObject[] ImagenesVida; 
 
     // Innecesario el static porque llamamos a la funcion SumarPuntos
     // con lo que nuestros puntos se comparten automaticamente
@@ -28,6 +29,11 @@ public class GameManager : MonoBehaviour
     // Innecesario el static porque llamamos a la funcion RomperLadrillo
     // refereincia a commit: c62cc96
     public int cuentaLadrillo;
+
+    public Rigidbody2D bolaPrefab;
+    public List<Bola> bolasActivas = new List<Bola>();
+
+    public float fuerzaBola = 10f; 
 
     void Awake()
     {
@@ -61,8 +67,8 @@ public class GameManager : MonoBehaviour
     {
         vidas--;
 
-        if (vidas >= 0 && vidas < vidasImage.Length)
-            vidasImage[vidas].SetActive(false);
+        if (vidas >= 0 && vidas < ImagenesVida.Length)
+            ImagenesVida[vidas].SetActive(false);
 
         if (vidas <= 0)
         {
@@ -75,4 +81,56 @@ public class GameManager : MonoBehaviour
     {
         puntoTxt.text = puntos.ToString("0000");
     }
-}
+
+
+    public void RegistrarBola(Bola ball)
+    {
+        bolasActivas.Add(ball);
+    }
+
+    public void EliminarBola(Bola ball)
+    {
+        bolasActivas.Remove(ball);
+    }
+
+    public int sacarBolasAct()
+    {
+        for (int i = bolasActivas.Count - 1; i >= 0; i--)
+        {
+            if (bolasActivas[i] == null)
+            {
+                bolasActivas.RemoveAt(i);
+            }
+        }
+        return bolasActivas.Count;
+    }
+        
+        
+    public void DuplicarBolas()
+    {
+        // Limpiar antes de duplicar
+        sacarBolasAct(); 
+
+        // con esto copiamos la lista que tenemos
+        foreach (Bola b in new List<Bola>(bolasActivas)) 
+        {
+            Rigidbody2D nuevaBola = Instantiate(
+                bolaPrefab,
+                b.transform.position,
+                Quaternion.identity
+            );
+
+            Rigidbody2D rb = nuevaBola.GetComponent<Rigidbody2D>();
+            Vector2 fuerza = new Vector2(Random.Range(-1f, 1f), 1).normalized * fuerzaBola;
+            rb.AddForce(fuerza, ForceMode2D.Impulse);
+
+            // No es neceario que lo registremos aqui
+            // RegistrarBola(nuevaBola.GetComponent<Bola>());
+        }
+
+        Debug.Log("Duplicador ha pasado por la barra");
+
+    }
+
+
+    }
