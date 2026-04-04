@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using TMPro;    
 
@@ -9,25 +9,21 @@ public class Bola : MonoBehaviour
 
     Rigidbody2D RB;
 
-    int puntos = 0;
-    int vidas = 3;
+    public static int bolasEnJuego = 0;
 
 
-    public TextMeshProUGUI puntoTxt;
-    public GameObject[] vidasImage;
-
-    public GameObject gameOverPanel;
-    public GameObject victoriaPanel;
-    int cuentaLadrillo; 
+    private void Awake()
+    {
+        bolasEnJuego++;
+    }
     
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
         RB.linearVelocity = Vector2.down * 10f;
-        cuentaLadrillo = GameObject.FindGameObjectsWithTag("Bloque").Length;
-
+            
+        // Al tener un manejador ya no es necesario que la Bola.cs se encargue contar los ladrillos y actualizar la UI
     }
 
     // Update is called once per frame
@@ -35,18 +31,21 @@ public class Bola : MonoBehaviour
     {
         if(transform.position.y < minY)
         {
-            if (vidas <= 0)
+            if (bolasEnJuego <= 1) 
             {
-                GameOver();
+                // No necesitamos condicion de contar vida para que salte el GameOver
+                // Y lo hace la funcion PerderVida del GameManger
+
+                GameManager.Instance.PerderVida();
+                transform.position = Vector3.zero;
+                RB.linearVelocity = Vector2.down * 10f;     
             }
             else
             {
-                transform.position = Vector3.zero;
-                RB.linearVelocity = Vector2.down * 10f;
-                vidas--;
-                vidasImage[vidas].SetActive(false);
+                Destroy(gameObject);
             }
-        }
+
+        }   
 
         if (RB.linearVelocity.magnitude > maxVelocidad)
         {
@@ -60,26 +59,17 @@ public class Bola : MonoBehaviour
         if (collision.gameObject.CompareTag("Bloque"))
         {
             Destroy(collision.gameObject);
-            puntos+= 10;
-            puntoTxt.text = puntos.ToString("0000");
-            cuentaLadrillo--; 
-            if(cuentaLadrillo <= 0)
-            {
-                victoriaPanel.SetActive(true);
-                Time.timeScale = 0;
-            }
+
+            GameManager.Instance.SumarPuntos(10);
+            GameManager.Instance.RomperLadrillo();
 
         }
     }
 
-
-    void GameOver()
+    private void OnDestroy()
     {
-        Debug.Log("Game Over"); 
-        gameOverPanel.SetActive(true);
-        Time.timeScale = 0; 
-        Destroy(gameObject);
+        bolasEnJuego--; 
     }
-   
+
 
 }

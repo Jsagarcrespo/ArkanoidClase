@@ -1,3 +1,4 @@
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,13 +12,16 @@ public class Barra : MonoBehaviour
 
     private float anchoBarra;
 
+    public GameObject bolaPrefab;
+    private readonly float fuerza = 5f;
+
+
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
         RB.bodyType = RigidbodyType2D.Kinematic;
         RB.gravityScale = 0f;
         RB.freezeRotation = true;
-
 
     }
 
@@ -47,5 +51,27 @@ public class Barra : MonoBehaviour
 
 
             RB.MovePosition(nuevaPos);
+
+        // Disparo
+        if (keyboard.spaceKey.wasPressedThisFrame)
+        {
+            Disparar();
+        }
+    }
+
+    void Disparar()
+    {
+        // Hacemos copias del prefab del disparo y las lanzamos
+        GameObject nuevaBola = Instantiate(bolaPrefab, transform.position, transform.rotation);
+
+        Rigidbody2D d = nuevaBola.GetComponent<Rigidbody2D>();
+
+        d.gravityScale = 0;
+        d.transform.Translate(Vector2.up * 0.7f); 
+        d.AddForce(Vector2.up * fuerza, ForceMode2D.Impulse);
+
+        // ya no necesitamos actualizar la ui ni contar ladrrilos
+        // referencia a commit: a8d9f8d
+
     }
 }
