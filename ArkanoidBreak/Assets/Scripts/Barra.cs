@@ -1,3 +1,4 @@
+ï»¿using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,8 +12,15 @@ public class Barra : MonoBehaviour
 
     private float anchoBarra;
 
-    public Rigidbody2D bola;
+    public GameObject bolaPrefab;
     private readonly float fuerza = 5f;
+
+
+    // Para que pueda pasarlos en el inspector del prefab
+    public TextMeshProUGUI puntoTxt;
+    public GameObject[] vidasImage; 
+    public GameObject gameOverPanel;
+    public GameObject victoriaPanel; 
 
     void Start()
     {
@@ -61,15 +69,19 @@ public class Barra : MonoBehaviour
     void Disparar()
     {
         // Hacemos copias del prefab del disparo y las lanzamos
-        Rigidbody2D d = (Rigidbody2D)Instantiate(bola, transform.position, transform.rotation);
+        GameObject nuevaBola = Instantiate(bolaPrefab, transform.position, transform.rotation);
 
-        // Desactivar la gravedad para este objeto, si no, ¡se cae!
+        Rigidbody2D d = nuevaBola.GetComponent<Rigidbody2D>();
+
+        Bola scriptBola = nuevaBola.GetComponent<Bola>(); 
+        scriptBola.puntoTxt = puntoTxt;
+        scriptBola.vidasImage = vidasImage;
+        scriptBola.gameOverPanel = gameOverPanel;
+        scriptBola.victoriaPanel = victoriaPanel;
+
         d.gravityScale = 0;
-
-        // Posición de partida, en la punta de la nave
-        d.transform.Translate(Vector2.up * 0.7f);
-
-        // Lanzarlo
+        d.transform.Translate(Vector2.up * 0.7f); 
         d.AddForce(Vector2.up * fuerza, ForceMode2D.Impulse);
+        
     }
 }
