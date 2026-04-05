@@ -6,6 +6,7 @@ public class Bola : MonoBehaviour
 {
     public float minY = -5.5f;
     public float maxVelocidad = 15f;
+    public float minVelocidad = 6f;
 
     Rigidbody2D RB;
     public GameObject duplisPrefab;
@@ -44,7 +45,12 @@ public class Bola : MonoBehaviour
                 Destroy(gameObject);
             }
 
-        }   
+        }
+
+        if (RB.linearVelocity.magnitude < minVelocidad)
+        {
+            RB.linearVelocity = RB.linearVelocity.normalized * minVelocidad;
+        }
 
         if (RB.linearVelocity.magnitude > maxVelocidad)
         {
