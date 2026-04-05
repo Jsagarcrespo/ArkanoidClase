@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     public float fuerzaBola = 10f; 
 
     public bool disparoActivo = false;
-    public float duracionDisparo = 5f; 
+    public float duracionDisparo = 6f; 
 
     void Awake()
     {
@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
     {
         cuentaLadrillo = GameObject.FindGameObjectsWithTag("Bloque").Length;
         ActualizarUI();
+
+        DesactivaDisparo(); 
     }
 
     public void SumarPuntos(int cantidad)
@@ -139,7 +141,7 @@ public class GameManager : MonoBehaviour
     public void ActivarDisparo()
     {
         disparoActivo = true;
-        Invoke("DesactivarDisparo", duracionDisparo); 
+        Invoke("DesactivaDisparo", duracionDisparo); 
     }
 
 

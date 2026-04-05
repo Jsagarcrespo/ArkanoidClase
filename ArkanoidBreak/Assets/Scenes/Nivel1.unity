@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59e558bb15122d43b108a905f02959b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Barra
-  velocidadBarra: 65
+  velocidadBarra: 40
   disparo: {fileID: 4283104234097564337, guid: b866fa8cc6d175748917ce857606df70, type: 3}
 --- !u!60 &656356839
 PolygonCollider2D:

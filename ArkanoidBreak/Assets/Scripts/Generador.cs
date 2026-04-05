@@ -24,6 +24,9 @@ public class Generador : MonoBehaviour
 
     private void Awake()
     {
+        foreach (var b in GameObject.FindGameObjectsWithTag("Bala"))
+            Destroy(b);
+
         int totalBricks = size.x * size.y;
 
         
@@ -94,6 +97,7 @@ public class Generador : MonoBehaviour
 
     public void Restart()
     {
+        
         Time.timeScale = 1; 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

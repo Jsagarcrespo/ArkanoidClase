@@ -22,7 +22,6 @@ public class Barra : MonoBehaviour
         RB.bodyType = RigidbodyType2D.Kinematic;
         RB.gravityScale = 0f;
         RB.freezeRotation = true;
-        GameManager.Instance.DesactivaDisparo(); 
 
     }
 
@@ -54,7 +53,7 @@ public class Barra : MonoBehaviour
             RB.MovePosition(nuevaPos);
 
         // Disparo
-        if (keyboard.spaceKey.wasPressedThisFrame)
+        if (keyboard.spaceKey.wasPressedThisFrame && GameManager.Instance.disparoActivo)
         {
             Disparar();
         }
