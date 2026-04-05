@@ -8,6 +8,9 @@ TagManager:
   - Bola
   - duplis
   - Barra
+  - Disparo
+  - Pared
+  - BloqueMetal
   layers:
   - Default
   - TransparentFX

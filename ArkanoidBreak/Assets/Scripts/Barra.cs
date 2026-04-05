@@ -53,7 +53,7 @@ public class Barra : MonoBehaviour
             RB.MovePosition(nuevaPos);
 
         // Disparo
-        if (keyboard.spaceKey.wasPressedThisFrame)
+        if (keyboard.spaceKey.wasPressedThisFrame && GameManager.Instance.disparoActivo)
         {
             Disparar();
         }

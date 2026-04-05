@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
 
     public float fuerzaBola = 10f; 
 
+    public bool disparoActivo = false;
+    public float duracionDisparo = 6f; 
+
     void Awake()
     {
         Instance = this;
@@ -44,6 +47,8 @@ public class GameManager : MonoBehaviour
     {
         cuentaLadrillo = GameObject.FindGameObjectsWithTag("Bloque").Length;
         ActualizarUI();
+
+        DesactivaDisparo(); 
     }
 
     public void SumarPuntos(int cantidad)
@@ -130,6 +135,19 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Duplicador ha pasado por la barra");
 
+    }
+
+
+    public void ActivarDisparo()
+    {
+        disparoActivo = true;
+        Invoke("DesactivaDisparo", duracionDisparo); 
+    }
+
+
+    public void DesactivaDisparo()
+    {
+        disparoActivo = false;
     }
 
 

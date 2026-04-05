@@ -11,6 +11,7 @@ public class Generador : MonoBehaviour
 
     public GameObject[] bloquesPrefabs;     
     public GameObject bloqueMetalPrefab;
+    public GameObject bloqueDsiparoPrefab; 
 
     public GameObject panelBienvenida;
     public static bool primeraVez = true;
@@ -18,15 +19,23 @@ public class Generador : MonoBehaviour
     public int minMetales = 2;
     public int maxMetales = 5;
 
+    public int minBloqDisparo = 2;
+    public int maxBloqDisparo = 5;
+
     private void Awake()
     {
+        foreach (var b in GameObject.FindGameObjectsWithTag("Bala"))
+            Destroy(b);
+
         int totalBricks = size.x * size.y;
 
         
         int cantidadMetales = Random.Range(minMetales, maxMetales + 1);
+        int cantDisparos = Random.Range(minBloqDisparo, maxBloqDisparo + 1);
 
         // Para no repetir posiciones
         int metalesColocados = 0;
+        int disparosColocados = 0; 
 
         for (int i = 0; i < size.x; i++)
         {
@@ -39,6 +48,11 @@ public class Generador : MonoBehaviour
                 {
                     prefabElegido = bloqueMetalPrefab;
                     metalesColocados++;
+                } 
+                else if(disparosColocados < cantDisparos && Random.value < 0.2f)
+                {
+                    prefabElegido = bloqueDsiparoPrefab;
+                    disparosColocados++;
                 }
                 else
                 {
@@ -83,6 +97,7 @@ public class Generador : MonoBehaviour
 
     public void Restart()
     {
+        
         Time.timeScale = 1; 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
