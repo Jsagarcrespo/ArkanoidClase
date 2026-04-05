@@ -46,7 +46,7 @@ public class Generador : MonoBehaviour
                     prefabElegido = bloqueMetalPrefab;
                     metalesColocados++;
                 } 
-                else if(metalesColocados < cantidadMetales && Random.value < 0.2f)
+                else if(disparosColocados < cantDisparos && Random.value < 0.2f)
                 {
                     prefabElegido = bloqueDsiparoPrefab;
                     disparosColocados++;

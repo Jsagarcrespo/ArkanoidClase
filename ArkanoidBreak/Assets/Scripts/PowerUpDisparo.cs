@@ -11,7 +11,12 @@ public class PowerUpDisparo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // Eliminamos el objeto si se sale de la pantalla
+        if (transform.position.y < -5.5f)
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
