@@ -48,6 +48,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        // Para que me cargue los puntos que voy almacenando entre los niveles
+        puntos = ControlEscena.puntosTotales; 
+
         cuentaLadrillo = GameObject.FindGameObjectsWithTag("Bloque").Length;
         ActualizarUI();
 
