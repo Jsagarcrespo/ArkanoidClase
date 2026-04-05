@@ -2816,7 +2816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25da6a046d5fce1478a226c0912116b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Generador
-  size: {x: 2, y: 2}
+  size: {x: 8, y: 5}
   offset: {x: 1.4, y: 0.6}
   bloquesPrefabs:
   - {fileID: 9036566537420124788, guid: 9a13266680704bb439627aedb09d7d63, type: 3}
