@@ -97,9 +97,9 @@ public class Generador : MonoBehaviour
 
     public void Restart()
     {
-        
-        Time.timeScale = 1; 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+        // al perder volvemos al primer nivel
+        SceneManager.LoadScene(0);
     }
 
 }

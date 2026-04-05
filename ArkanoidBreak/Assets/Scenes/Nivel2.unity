@@ -2651,7 +2651,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: JUGAR DE NUEVO
+  m_text: Reiniciar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3050,10 +3050,12 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -1.35, y: -3.54}
-  - {x: -1.35, y: 5}
-  - {x: 12, y: 5}
-  - {x: 12, y: -3.54}
+  - {x: -1.35, y: -4.4}
+  - {x: -1.35, y: 4.1089315}
+  - {x: -0.42410994, y: 5}
+  - {x: 11.07351, y: 5}
+  - {x: 12, y: 4.09}
+  - {x: 12, y: -4.4}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0

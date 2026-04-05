@@ -41,6 +41,9 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+
+        Screen.SetResolution(800, 600, false);
+
     }
 
     void Start()
@@ -126,7 +129,7 @@ public class GameManager : MonoBehaviour
             );
 
             Rigidbody2D rb = nuevaBola.GetComponent<Rigidbody2D>();
-            Vector2 fuerza = new Vector2(Random.Range(-1f, 1f), 1).normalized * fuerzaBola;
+            Vector2 fuerza = new Vector2(0.7f, 1f).normalized * fuerzaBola;
             rb.AddForce(fuerza, ForceMode2D.Impulse);
 
             // No es neceario que lo registremos aqui

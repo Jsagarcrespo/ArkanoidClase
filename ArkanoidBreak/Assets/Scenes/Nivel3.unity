@@ -2481,10 +2481,10 @@ MonoBehaviour:
   bloqueMetalPrefab: {fileID: 6416994028177359492, guid: a309d390a30a30645a54cbc2f708c868, type: 3}
   bloqueDsiparoPrefab: {fileID: 4612123725186490904, guid: 9ca0523ac2ac93842955cce4281206f4, type: 3}
   panelBienvenida: {fileID: 781225053}
-  minMetales: 3
+  minMetales: 2
   maxMetales: 5
-  minBloqDisparo: 2
-  maxBloqDisparo: 2
+  minBloqDisparo: 3
+  maxBloqDisparo: 3
 --- !u!4 &1806502348
 Transform:
   m_ObjectHideFlags: 0
@@ -2964,8 +2964,8 @@ MonoBehaviour:
   panelBienvenida: {fileID: 781225053}
   minMetales: 1
   maxMetales: 1
-  minBloqDisparo: 0
-  maxBloqDisparo: 0
+  minBloqDisparo: 1
+  maxBloqDisparo: 1
 --- !u!1 &2027266551
 GameObject:
   m_ObjectHideFlags: 0
@@ -3075,7 +3075,7 @@ EdgeCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 6
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -3095,10 +3095,12 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -1.35, y: -3.54}
-  - {x: -1.35, y: 5}
-  - {x: 12, y: 5}
-  - {x: 12, y: -3.54}
+  - {x: -1.35, y: -4.4}
+  - {x: -1.35, y: 4.1347046}
+  - {x: -0.3105688, y: 5}
+  - {x: 11.07531, y: 5}
+  - {x: 12, y: 4.1800537}
+  - {x: 12, y: -4.4}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
