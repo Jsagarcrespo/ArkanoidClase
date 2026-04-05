@@ -1442,7 +1442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8862990473241789086, guid: a309d390a30a30645a54cbc2f708c868, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.17
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 8862990473241789086, guid: a309d390a30a30645a54cbc2f708c868, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2197,7 +2197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8862990473241789086, guid: a309d390a30a30645a54cbc2f708c868, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.17
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 8862990473241789086, guid: a309d390a30a30645a54cbc2f708c868, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2403,7 +2403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8862990473241789086, guid: a309d390a30a30645a54cbc2f708c868, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.17
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 8862990473241789086, guid: a309d390a30a30645a54cbc2f708c868, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2471,8 +2471,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25da6a046d5fce1478a226c0912116b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Generador
-  size: {x: 9, y: 2}
-  offset: {x: 1.4, y: 0.6}
+  size: {x: 11, y: 4}
+  offset: {x: 1.2, y: 0.4}
   bloquesPrefabs:
   - {fileID: 9036566537420124788, guid: 9a13266680704bb439627aedb09d7d63, type: 3}
   - {fileID: 4612123725186490904, guid: 56e1e75fbfb019a48ae5e295db655f55, type: 3}
@@ -2481,10 +2481,10 @@ MonoBehaviour:
   bloqueMetalPrefab: {fileID: 6416994028177359492, guid: a309d390a30a30645a54cbc2f708c868, type: 3}
   bloqueDsiparoPrefab: {fileID: 4612123725186490904, guid: 9ca0523ac2ac93842955cce4281206f4, type: 3}
   panelBienvenida: {fileID: 781225053}
-  minMetales: 1
-  maxMetales: 1
-  minBloqDisparo: 0
-  maxBloqDisparo: 0
+  minMetales: 3
+  maxMetales: 5
+  minBloqDisparo: 2
+  maxBloqDisparo: 2
 --- !u!4 &1806502348
 Transform:
   m_ObjectHideFlags: 0
@@ -2952,8 +2952,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25da6a046d5fce1478a226c0912116b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Generador
-  size: {x: 9, y: 2}
-  offset: {x: 1.4, y: 0.6}
+  size: {x: 9, y: 3}
+  offset: {x: 1.2, y: 0.4}
   bloquesPrefabs:
   - {fileID: 9036566537420124788, guid: 9a13266680704bb439627aedb09d7d63, type: 3}
   - {fileID: 4612123725186490904, guid: 56e1e75fbfb019a48ae5e295db655f55, type: 3}

@@ -38,7 +38,10 @@ public class Bola : MonoBehaviour
 
                 GameManager.Instance.PerderVida();
                 transform.position = Vector3.zero;
-                RB.linearVelocity = Vector2.down * 10f;     
+                transform.position = Vector3.zero;
+                float angulo = Random.Range(-45f, 45f);  // grados
+                Vector2 direccion = Quaternion.Euler(0, 0, angulo) * Vector2.up;
+                RB.linearVelocity = direccion.normalized * 10f;
             }
             else
             {
